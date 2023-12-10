@@ -1,14 +1,32 @@
-import classes from './style.module.scss';
+import Form from '../../components/3-organisms/form/Form';
 import { FC, ReactElement } from 'react';
+import { useAppDispatch } from '../../hooks/redux';
+import { currentUserSlice } from '../../store/reducers/currentUserSlice';
+import { Navigate, useNavigate } from 'react-router-dom'
+import { NavRoutes } from '../../types/routes';
+import { useAuth } from '../../hooks/useAuth';
 
 type Props = unknown;
 
 const Registration: FC<Props> = (): ReactElement => {
+  const {isAuth} = useAuth();
+  const navigate = useNavigate();
+  const dispath = useAppDispatch();
+  const { setCurentUser } = currentUserSlice.actions;
+  
+  const handleRegistration = (email: string, password: string) => {
+    dispath(setCurentUser({
+      email: email,
+      token: password,
+    }))
+    navigate(NavRoutes.users)
+  }
 
   return (
-    <main className={classes.page}>
-      <h1>Registration Page</h1>
-    </main>
+    <>
+      {isAuth && <Navigate to={NavRoutes.users} replace={true} />}
+      <Form handleSubmit={handleRegistration} />
+    </>
   );
 };
 
