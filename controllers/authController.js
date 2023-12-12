@@ -1,11 +1,13 @@
 const User = require('../models/User')
+const bcrypt = require('bcrypt');
 
 class authController {
   async login (req, res) {
     try {
       const {email, password} = req.body;
       const user = await User.findOne({email})
-      if (!user || !(user.password === password)) {
+      const isValidPassword = bcrypt.compareSync(password, user.password);
+      if (!user || !isValidPassword) {
           return res.status(400).json({message: `Invalid email or password!`})
       }
       if (!user.isActive) {
@@ -25,11 +27,12 @@ class authController {
       const {username, email, password, position} = req.body;
       const candidate = await User.findOne({email})
       if (candidate) {
-        return res.status(400).json({message: 'User with this email exists.'})
+        return res.status(400).json({message: 'User with this email exists!'})
       }
       const lastLogin = Date.now();
       const isActive = true;
-      const user = new User({username, email, password, position, lastLogin, isActive});
+      const hashPass = bcrypt.hashSync(password, 7);
+      const user = new User({username, email, password: hashPass, position, lastLogin, isActive});
 
       await user.save();
       return res.json(user)
