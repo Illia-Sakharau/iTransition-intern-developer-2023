@@ -3,6 +3,10 @@ const User = require('../models/User')
 class usersController {  
   async changeStatus (req, res) {
     try {
+      const user = await User.findOne({email: req.user.email})
+      if (!user) {
+        return res.status(403).json({message: "User is anonym!"})
+      }
       const { emails, isActive } = req.body;
       const regEx = new RegExp(`^(${emails.join('|')})$`);
 
@@ -18,6 +22,10 @@ class usersController {
 
   async deleteUsers (req, res) {
     try {
+      const user = await User.findOne({email: req.user.email})
+      if (!user) {
+        return res.status(403).json({message: "User is anonym!"})
+      }
       const { emails } = req.body;
       const regEx = new RegExp(`^(${emails.join('|')})$`);
 
@@ -33,6 +41,11 @@ class usersController {
   
   async getUsers (req, res) {
     try {
+      const user = await User.findOne({email: req.user.email})
+      if (!user) {
+        return res.status(403).json({message: "User is anonym!"})
+      }
+
       const users = await User.find();
       res.json(users)
     } catch (error) {

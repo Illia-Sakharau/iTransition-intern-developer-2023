@@ -1,4 +1,5 @@
 const path = require('path');
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
   mode: 'production',
@@ -9,4 +10,6 @@ module.exports = {
     filename: 'final.js',
   },
   target: 'node',
+  externalsPresets: { node: true },
+  externals: [nodeExternals()],
 };

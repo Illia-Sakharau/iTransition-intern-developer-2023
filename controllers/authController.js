@@ -1,5 +1,12 @@
-const User = require('../models/User')
+const User = require('../models/User');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const {key} = require('../config');
+
+const generateAccessToken = (email) => {
+  const payload = { email }
+  return jwt.sign(payload, key, {expiresIn: '24h'})
+}
 
 class authController {
   async login (req, res) {
@@ -13,9 +20,10 @@ class authController {
       if (!user.isActive) {
         return res.status(400).json({message: `This user is blocked!`})
       }
+      const token = generateAccessToken(email)
       user.lastLogin = Date.now();
       await user.save()
-      return res.json(user)
+      return res.json({ token, user })
     } catch (error) {
       console.log(error);
       res.status(400).json({message: 'Login error'})
@@ -33,9 +41,10 @@ class authController {
       const isActive = true;
       const hashPass = bcrypt.hashSync(password, 7);
       const user = new User({username, email, password: hashPass, position, lastLogin, isActive});
+      const token = generateAccessToken(email)
 
       await user.save();
-      return res.json(user)
+      return res.json({ token, user })
     } catch (error) {
       console.log(error);
       res.status(400).json({message: 'Registration error'})
