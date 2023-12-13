@@ -20,7 +20,7 @@ const Header: FC<Props> = (): ReactElement => {
   }
 
   return (
-    <Navbar collapseOnSelect bg='dark' variant='dark' >
+    <Navbar collapseOnSelect bg='dark' variant='dark' sticky='top'>
       <Container>
         <Navbar.Brand href={NavRoutes.users}>TaBLe</Navbar.Brand>
           <ButtonToolbar className="justify-content-end">

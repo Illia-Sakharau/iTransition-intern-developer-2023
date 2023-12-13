@@ -7,11 +7,21 @@ type Props = unknown;
 
 const RootLayout: FC<Props> = (): ReactElement => {
   return (
-    <div>
+    <>
+      <style type="text/css">
+        {`
+          .h-100vh {
+            min-height: calc(100vh - 112px);
+          }
+        `}
+      </style>
+
       <Header />
-      <Outlet />
+      <main className='h-100vh'>
+        <Outlet />
+      </main>
       <Footer />
-    </div>
+    </>
   );
 };
 
