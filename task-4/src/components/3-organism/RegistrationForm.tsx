@@ -72,7 +72,7 @@ const RegistrationForm: FC<Props> = ({ handleSubmit }): ReactElement => {
         />
 
         <Button 
-          className='mt-3 w-100' 
+          className='my-3 w-100' 
           variant="primary"
           type="submit" 
           onClick={handleClick}

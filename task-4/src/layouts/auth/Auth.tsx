@@ -9,7 +9,7 @@ type Props = unknown;
 const Auth: FC<Props> = (): ReactElement => {
   
   return (
-    <Container className='py-5'>
+    <Container className={classes.wrapper}>
       <Row xs='1' sm='1' md='2'>
         <Col className={classes.image}>
           <Image src={IMG} rounded fluid />

@@ -1,5 +1,14 @@
 @import "../../../node_modules/bootstrap/scss/bootstrap.scss";
 
+.wrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 0;
+}
+
 .image {
   & img {
     width: 100%;
@@ -15,6 +24,9 @@
 }
 
 @include media-breakpoint-down(md, $grid-breakpoints) {
+  .wrapper {
+    justify-content: flex-start;
+  }
   .image {
     max-height: 160px;
   }

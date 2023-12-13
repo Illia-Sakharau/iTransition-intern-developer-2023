@@ -4,13 +4,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   min-height: calc(100vh - 56px);
-}
-
-
-@include media-breakpoint-down(md, $grid-breakpoints) {
-  .main {
-    justify-content: flex-start;
-  }
 }
