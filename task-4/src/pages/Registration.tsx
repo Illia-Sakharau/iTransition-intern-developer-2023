@@ -1,10 +1,10 @@
-import MyForm from '../components/Form';
 import { FC, ReactElement } from 'react';
 import { useAppDispatch } from '../hooks/redux';
 import { currentUserSlice } from '../store/reducers/currentUserSlice';
 import { Navigate, useNavigate } from 'react-router-dom'
 import { NavRoutes } from '../types/routes';
 import { useAuth } from '../hooks/useAuth';
+import RegistrationForm from '../components/3-organism/RegistrationForm';
 
 type Props = unknown;
 
@@ -14,10 +14,12 @@ const Registration: FC<Props> = (): ReactElement => {
   const dispath = useAppDispatch();
   const { setCurentUser } = currentUserSlice.actions;
   
-  const handleRegistration = (email: string, password: string) => {
+  const handleRegistration = (props:{name: string, position: string, email: string, password: string}) => {
+    console.log(props);
+    
     dispath(setCurentUser({
-      email: email,
-      token: password,
+      email: props.email,
+      token: props.password,
     }))
     navigate(NavRoutes.users)
   }
@@ -25,7 +27,7 @@ const Registration: FC<Props> = (): ReactElement => {
   return (
     <>
       {isAuth && <Navigate to={NavRoutes.users} replace={true} />}
-      <MyForm handleSubmit={handleRegistration} />
+      <RegistrationForm handleSubmit={handleRegistration} />
     </>
   );
 };

@@ -4,7 +4,7 @@ import { useAppDispatch } from '../hooks/redux';
 import { currentUserSlice } from '../store/reducers/currentUserSlice';
 import { NavRoutes } from '../types/routes';
 import { useAuth } from '../hooks/useAuth';
-import LoginForm from '../components/LoginForm';
+import LoginForm from '../components/3-organism/LoginForm';
 
 const Login: FC = (): ReactElement => {
   const {isAuth} = useAuth();

@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { FC, ReactElement } from 'react';
-import { NavRoutes } from '../types/routes';
-import { useAppDispatch } from '../hooks/redux';
-import { currentUserSlice } from '../store/reducers/currentUserSlice';
-import { useAuth } from '../hooks/useAuth';
+import { NavRoutes } from '../../types/routes';
+import { useAppDispatch } from '../../hooks/redux';
+import { currentUserSlice } from '../../store/reducers/currentUserSlice';
+import { useAuth } from '../../hooks/useAuth';
 import { Navbar, Button, Container, ButtonToolbar } from 'react-bootstrap';
 
 const Header: FC = (): ReactElement => {

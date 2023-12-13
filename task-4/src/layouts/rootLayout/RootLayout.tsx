@@ -1,6 +1,6 @@
 import { FC, ReactElement } from 'react';
 import { Outlet } from 'react-router-dom';
-import Header from '../../components/Header';
+import Header from '../../components/3-organism/Header';
 import classes from "./style.module.scss";
 
 type Props = unknown;

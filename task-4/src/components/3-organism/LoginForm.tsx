@@ -1,6 +1,6 @@
 import { FC, ReactElement, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import Input from './1-atom/input/Input';
+import Input from '../1-atom/input/Input';
 
 type Props = {
   handleSubmit: (props: {email: string; password: string})=> void;
@@ -24,7 +24,7 @@ const LoginForm: FC<Props> = ({ handleSubmit }): ReactElement => {
       <Form>
         <Input
           label={'Email address'}
-          type={'text'}
+          type={'email'}
           placeholder={'Enter email'} 
           value={email} 
           setValue={setEmail}        />
