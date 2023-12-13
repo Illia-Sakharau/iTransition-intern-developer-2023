@@ -1,16 +1,16 @@
-import classes from './style.module.scss';
 import { FC, ReactElement, useState } from 'react';
+import { Button } from 'react-bootstrap';
 
 type Props = {
   handleSubmit: (email: string, password: string)=> void;
 };
 
-const Form: FC<Props> = ({ handleSubmit }): ReactElement => {
+const MyForm: FC<Props> = ({ handleSubmit }): ReactElement => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   return (
-    <div className={classes.form}>
+    <div>
       <input 
         type="email"
         value={email}
@@ -23,11 +23,11 @@ const Form: FC<Props> = ({ handleSubmit }): ReactElement => {
         onChange={(e) => setPassword(e.target.value)} 
         placeholder='Type password'
       />
-      <button onClick={() => handleSubmit(email, password)}>
+      <Button variant="primary" type="submit" onClick={() => handleSubmit(email, password)}>
         Submit
-      </button>
+      </Button>
     </div>
   );
 };
 
-export default Form;
+export default MyForm;

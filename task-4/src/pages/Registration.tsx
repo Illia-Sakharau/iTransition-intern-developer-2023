@@ -1,10 +1,10 @@
-import Form from '../../components/3-organisms/form/Form';
+import MyForm from '../components/Form';
 import { FC, ReactElement } from 'react';
-import { useAppDispatch } from '../../hooks/redux';
-import { currentUserSlice } from '../../store/reducers/currentUserSlice';
+import { useAppDispatch } from '../hooks/redux';
+import { currentUserSlice } from '../store/reducers/currentUserSlice';
 import { Navigate, useNavigate } from 'react-router-dom'
-import { NavRoutes } from '../../types/routes';
-import { useAuth } from '../../hooks/useAuth';
+import { NavRoutes } from '../types/routes';
+import { useAuth } from '../hooks/useAuth';
 
 type Props = unknown;
 
@@ -25,7 +25,7 @@ const Registration: FC<Props> = (): ReactElement => {
   return (
     <>
       {isAuth && <Navigate to={NavRoutes.users} replace={true} />}
-      <Form handleSubmit={handleRegistration} />
+      <MyForm handleSubmit={handleRegistration} />
     </>
   );
 };

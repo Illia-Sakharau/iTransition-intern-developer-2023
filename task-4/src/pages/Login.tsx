@@ -1,10 +1,10 @@
-import Form from '../../components/3-organisms/form/Form';
+import MyForm from '../components/Form';
 import { FC, ReactElement } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../hooks/redux';
-import { currentUserSlice } from '../../store/reducers/currentUserSlice';
-import { NavRoutes } from '../../types/routes';
-import { useAuth } from '../../hooks/useAuth';
+import { useAppDispatch } from '../hooks/redux';
+import { currentUserSlice } from '../store/reducers/currentUserSlice';
+import { NavRoutes } from '../types/routes';
+import { useAuth } from '../hooks/useAuth';
 
 type Props = unknown;
 
@@ -25,7 +25,7 @@ const Login: FC<Props> = (): ReactElement => {
   return (
     <>
       {isAuth && <Navigate to={NavRoutes.users} replace={true} />}
-      <Form handleSubmit={handleLogin} />
+      <MyForm handleSubmit={handleLogin} />
     </>
   );
 };

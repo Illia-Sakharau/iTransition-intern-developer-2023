@@ -1,14 +1,13 @@
-import classes from './style.module.scss';
 import { FC, ReactElement } from 'react';
 import { Outlet } from 'react-router-dom';
-import Header from '../../components/3-organisms/header/Header';
-import Footer from '../../components/3-organisms/footer/Footer';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 type Props = unknown;
 
 const RootLayout: FC<Props> = (): ReactElement => {
   return (
-    <div className={classes.layout}>
+    <div>
       <Header />
       <Outlet />
       <Footer />

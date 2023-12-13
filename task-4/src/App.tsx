@@ -1,11 +1,12 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import RootLayout from './layouts/rootLayout/RootLayout';
-import ErrorPage from './pages/error/Error';
-import Users from './pages/users/Users';
-import Auth from './layouts/auth/Auth';
-import Login from './pages/login/Login';
+import RootLayout from './layouts/RootLayout';
+import ErrorPage from './pages/Error';
+import Users from './pages/Users';
+import Auth from './layouts/Auth';
+import Login from './pages/Login';
 import { NavRoutes } from './types/routes';
-import Registration from './pages/registration/Registration';
+import Registration from './pages/Registration';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const router = createBrowserRouter([
   {
