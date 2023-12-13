@@ -6,9 +6,7 @@ import { currentUserSlice } from '../store/reducers/currentUserSlice';
 import { useAuth } from '../hooks/useAuth';
 import { Navbar, Button, Container, ButtonToolbar } from 'react-bootstrap';
 
-type Props = unknown;
-
-const Header: FC<Props> = (): ReactElement => {
+const Header: FC = (): ReactElement => {
   const {isAuth} = useAuth();
   const navigate = useNavigate();
   const dispath = useAppDispatch();

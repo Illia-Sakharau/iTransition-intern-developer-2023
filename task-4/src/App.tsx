@@ -1,8 +1,8 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import RootLayout from './layouts/RootLayout';
+import RootLayout from './layouts/rootLayout/RootLayout';
 import ErrorPage from './pages/Error';
 import Users from './pages/Users';
-import Auth from './layouts/Auth';
+import Auth from './layouts/auth/Auth';
 import Login from './pages/Login';
 import { NavRoutes } from './types/routes';
 import Registration from './pages/Registration';
