@@ -50,6 +50,25 @@ class authController {
       res.status(400).json({message: 'Registration error'})
     }
   }
+  
+  async checkUser (req, res) {
+    try {
+      const token = req.headers.authorization.split(' ')[1]
+      const decodedData = jwt.verify(token, key);
+      const user = await User.findOne({email: decodedData.email})
+      if (!user) {
+        return res.status(403).json({message: "Bad token!"})
+      }
+      const isActive = user.isActive;
+      if (!isActive) {
+        return res.status(403).json({message: "User bloked!"})
+      }
+      res.json({ token, user })
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({message: 'Token error'})
+    }
+  }
 }
 
 module.exports = new authController();
