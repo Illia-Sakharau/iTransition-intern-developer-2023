@@ -1,6 +1,10 @@
 import { FC, ReactElement } from 'react';
 import { Container, Table } from 'react-bootstrap';
-type Props = unknown;
+import { UserInfo } from '../../types/users';
+
+type Props = {
+  usersList?: UserInfo[];
+};
 
 const UserTable: FC<Props> = (): ReactElement => {
 

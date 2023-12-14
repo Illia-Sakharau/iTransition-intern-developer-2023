@@ -1,28 +1,17 @@
 import { FC, ReactElement, useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import Input from '../1-atom/input/Input';
 import Select from '../1-atom/select/Select';
-
-const USER_POSITION = [
-  {
-    value: "CTO",
-    text: "CTO"
-  },
-  {
-    value: "FE",
-    text: "FE developer"
-  },
-  {
-    value: "BE",
-    text: "BE developer"
-  },
-]
+import { RegistrationReqBody } from '../../types/users';
+import { USER_POSITION } from '../../constants';
+import RectButton from '../1-atom/button/RectButton';
 
 type Props = {
-  handleSubmit: (props:{name: string, position: string, email: string, password: string})=> void;
+  handleSubmit: (props: RegistrationReqBody)=> void;
+  isLoading: boolean;
 };
 
-const RegistrationForm: FC<Props> = ({ handleSubmit }): ReactElement => {
+const RegistrationForm: FC<Props> = ({ handleSubmit, isLoading }): ReactElement => {
   const [name, setName] = useState('');
   const [position, setPosition] = useState(USER_POSITION[0].value);
   const [email, setEmail] = useState('');
@@ -31,7 +20,7 @@ const RegistrationForm: FC<Props> = ({ handleSubmit }): ReactElement => {
   const handleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.preventDefault();
     handleSubmit({
-      name,
+      username: name,
       position,
       email,
       password,
@@ -70,15 +59,15 @@ const RegistrationForm: FC<Props> = ({ handleSubmit }): ReactElement => {
           value={password} 
           setValue={setPassword}  
         />
-
-        <Button 
+        <RectButton
           className='my-3 w-100' 
           variant="primary"
           type="submit" 
           onClick={handleClick}
+          isLoading={isLoading}
         >
           Regstration
-        </Button>
+        </RectButton>
       </Form>
     </>
   );

@@ -1,12 +1,14 @@
 import { FC, ReactElement, useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import Input from '../1-atom/input/Input';
+import RectButton from '../1-atom/button/RectButton';
 
 type Props = {
   handleSubmit: (props: {email: string; password: string})=> void;
+  isLoading: boolean;
 };
 
-const LoginForm: FC<Props> = ({ handleSubmit }): ReactElement => {
+const LoginForm: FC<Props> = ({ handleSubmit, isLoading }): ReactElement => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -36,14 +38,15 @@ const LoginForm: FC<Props> = ({ handleSubmit }): ReactElement => {
           setValue={setPassword}  
         />
 
-        <Button 
+        <RectButton 
           className='my-3 w-100' 
           variant="primary"
           type="submit" 
           onClick={handleClick}
+          isLoading={isLoading}
         >
           Login
-        </Button>
+        </RectButton>
       </Form>
     </>
   );

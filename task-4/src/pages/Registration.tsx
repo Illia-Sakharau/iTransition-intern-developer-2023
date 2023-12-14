@@ -5,6 +5,8 @@ import { Navigate, useNavigate } from 'react-router-dom'
 import { NavRoutes } from '../types/routes';
 import { useAuth } from '../hooks/useAuth';
 import RegistrationForm from '../components/3-organism/RegistrationForm';
+import { useCreateUserMutation } from '../API/AuthAPI';
+import { AuthResp, RegistrationReqBody } from '../types/users';
 
 type Props = unknown;
 
@@ -13,21 +15,30 @@ const Registration: FC<Props> = (): ReactElement => {
   const navigate = useNavigate();
   const dispath = useAppDispatch();
   const { setCurentUser } = currentUserSlice.actions;
+  const [createUser, {isLoading}] = useCreateUserMutation()
   
-  const handleRegistration = (props:{name: string, position: string, email: string, password: string}) => {
-    console.log(props);
-    
-    dispath(setCurentUser({
-      email: props.email,
-      token: props.password,
-    }))
-    navigate(NavRoutes.users)
+  const handleRegistration = async (props: RegistrationReqBody) => {
+    createUser(props)
+      .then((resp)=> {
+        const data = (resp as AuthResp).data;
+        console.log(data)
+        localStorage.setItem('token', data.token)
+        dispath(setCurentUser({
+          email: data.user.email,
+          token: data.token,
+        }))
+        navigate(NavRoutes.users)
+      })
+      .catch(error => console.log(error))
   }
 
   return (
     <>
       {isAuth && <Navigate to={NavRoutes.users} replace={true} />}
-      <RegistrationForm handleSubmit={handleRegistration} />
+      <RegistrationForm 
+        handleSubmit={handleRegistration}
+        isLoading={isLoading}
+      />
     </>
   );
 };
