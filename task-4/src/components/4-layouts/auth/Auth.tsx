@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import { FC, ReactElement } from 'react';
 import { Col, Container, Row, Image } from 'react-bootstrap';
-import IMG from '../../assets/form-img.jpg';
+import IMG from '../../../assets/form-img.jpg';
 import classes from "./style.module.scss";
 
 type Props = unknown;

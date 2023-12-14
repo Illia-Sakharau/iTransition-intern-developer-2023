@@ -21,7 +21,6 @@ const Registration: FC<Props> = (): ReactElement => {
     createUser(props)
       .then((resp)=> {
         const data = (resp as AuthResp).data;
-        console.log(data)
         localStorage.setItem('token', data.token)
         dispath(setCurentUser({
           email: data.user.email,

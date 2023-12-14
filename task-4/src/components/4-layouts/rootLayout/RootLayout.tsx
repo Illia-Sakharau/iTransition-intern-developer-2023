@@ -1,11 +1,11 @@
 import { FC, ReactElement, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
-import Header from '../../components/3-organism/Header';
+import Header from '../../3-organism/Header';
 import classes from "./style.module.scss";
-import PageLoader from '../../components/1-atom/pageLoader/PageLoader';
-import { useCheckUserQuery } from '../../API/AuthAPI';
-import { useAppDispatch } from '../../hooks/redux';
-import {currentUserSlice} from '../../store/reducers/currentUserSlice';
+import PageLoader from '../../1-atom/pageLoader/PageLoader';
+import { useCheckUserQuery } from '../../../API/AuthAPI';
+import { useAppDispatch } from '../../../hooks/redux';
+import {currentUserSlice} from '../../../store/reducers/currentUserSlice';
 
 type Props = unknown;
 

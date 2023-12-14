@@ -9,8 +9,6 @@ const ErrorPage: FC<Props> = (): ReactElement => {
     location.reload();
   }
 
-  console.error(error);
-
   return (
     <div>
       <h1>Oops!</h1>

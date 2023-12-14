@@ -19,7 +19,6 @@ const Login: FC = (): ReactElement => {
     loginUser(props)
       .then((resp)=> {
         const data = (resp as AuthResp).data;
-        console.log(data)
         localStorage.setItem('token', data.token)
         dispath(setCurentUser({
           email: data.user.email,
