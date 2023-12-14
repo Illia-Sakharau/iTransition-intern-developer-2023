@@ -17,6 +17,7 @@ const RootLayout: FC<Props> = (): ReactElement => {
   useEffect(()=>{    
     if (data) {
       dispath(setCurentUser({
+        name: data.user.username,
         email: data.user.email,
         token: data.token,
       }))

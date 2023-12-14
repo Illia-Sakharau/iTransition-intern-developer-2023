@@ -2,7 +2,7 @@ import { Navigate } from 'react-router-dom';
 import { FC, ReactElement } from 'react';
 import { NavRoutes } from '../types/routes';
 import { useAuth } from '../hooks/useAuth';
-import UserTable from '../components/3-organism/UserTable';
+import UserTable from '../components/3-organism/UserTable/UserTable';
 import { useGetUsersQuery } from '../API/UserAPI';
 import PageLoader from '../components/1-atom/pageLoader/PageLoader';
 

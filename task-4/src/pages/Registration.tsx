@@ -23,6 +23,7 @@ const Registration: FC<Props> = (): ReactElement => {
         const data = (resp as AuthResp).data;
         localStorage.setItem('token', data.token)
         dispath(setCurentUser({
+          name: data.user.username,
           email: data.user.email,
           token: data.token,
         }))

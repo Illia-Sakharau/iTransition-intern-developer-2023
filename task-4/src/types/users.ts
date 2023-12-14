@@ -3,6 +3,7 @@ export type UserInfo = {
   "username": string;
   "email": string;
   "password": string;
+  "position"?: string
   "lastLogin": number;
   "isActive": boolean;
   "__v": number;
