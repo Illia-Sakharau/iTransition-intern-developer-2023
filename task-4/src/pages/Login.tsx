@@ -13,7 +13,7 @@ const Login: FC = (): ReactElement => {
   const navigate = useNavigate();
   const dispath = useAppDispatch();
   const { setCurentUser } = currentUserSlice.actions;
-  const [loginUser, {isLoading}]  = useLoginUserMutation();
+  const [loginUser, {isLoading, error}]  = useLoginUserMutation();
   
   const handleLogin =  (props: {email: string; password: string}) => {
     loginUser(props)
@@ -36,6 +36,7 @@ const Login: FC = (): ReactElement => {
       <LoginForm
         handleSubmit={handleLogin}
         isLoading={isLoading}
+        error={error}
       />
     </>
   );

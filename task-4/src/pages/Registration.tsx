@@ -15,7 +15,7 @@ const Registration: FC<Props> = (): ReactElement => {
   const navigate = useNavigate();
   const dispath = useAppDispatch();
   const { setCurentUser } = currentUserSlice.actions;
-  const [createUser, {isLoading}] = useCreateUserMutation()
+  const [createUser, {isLoading, error}] = useCreateUserMutation()
   
   const handleRegistration = async (props: RegistrationReqBody) => {
     createUser(props)
@@ -38,6 +38,7 @@ const Registration: FC<Props> = (): ReactElement => {
       <RegistrationForm 
         handleSubmit={handleRegistration}
         isLoading={isLoading}
+        error={error}
       />
     </>
   );

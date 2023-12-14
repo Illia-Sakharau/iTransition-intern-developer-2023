@@ -12,3 +12,5 @@ export const USER_POSITION = [
     text: "BE developer"
   },
 ]
+
+export const DEFAULT_ERROR_TEXT = 'Something went wrong, try again!';

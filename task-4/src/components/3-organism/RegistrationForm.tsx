@@ -1,17 +1,21 @@
 import { FC, ReactElement, useState } from 'react';
-import { Form } from 'react-bootstrap';
+import { Alert, Form } from 'react-bootstrap';
 import Input from '../1-atom/input/Input';
 import Select from '../1-atom/select/Select';
 import { RegistrationReqBody } from '../../types/users';
-import { USER_POSITION } from '../../constants';
+import { DEFAULT_ERROR_TEXT, USER_POSITION } from '../../constants';
 import RectButton from '../1-atom/button/RectButton';
+import { RespError } from '../../types/errors';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import { SerializedError } from '@reduxjs/toolkit';
 
 type Props = {
   handleSubmit: (props: RegistrationReqBody)=> void;
   isLoading: boolean;
+  error?: FetchBaseQueryError | SerializedError;
 };
 
-const RegistrationForm: FC<Props> = ({ handleSubmit, isLoading }): ReactElement => {
+const RegistrationForm: FC<Props> = ({ handleSubmit, isLoading, error }): ReactElement => {
   const [name, setName] = useState('');
   const [position, setPosition] = useState(USER_POSITION[0].value);
   const [email, setEmail] = useState('');
@@ -59,6 +63,7 @@ const RegistrationForm: FC<Props> = ({ handleSubmit, isLoading }): ReactElement 
           value={password} 
           setValue={setPassword}  
         />
+        {error && <Alert variant='danger' dismissible>{(error as RespError).data.message || DEFAULT_ERROR_TEXT}</Alert>}
         <RectButton
           className='my-3 w-100' 
           variant="primary"
