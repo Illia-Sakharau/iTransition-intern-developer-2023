@@ -7,6 +7,10 @@ class usersController {
       if (!user) {
         return res.status(403).json({message: "User is anonym!"})
       }
+      const isCurrentActive = user.isActive;
+      if (!isCurrentActive) {
+        return res.status(403).json({message: "User bloked!"})
+      }
       const { emails, isActive } = req.body;
       const regEx = new RegExp(`^(${emails.join('|')})$`);
 
@@ -26,6 +30,10 @@ class usersController {
       if (!user) {
         return res.status(403).json({message: "User is anonym!"})
       }
+      const isActive = user.isActive;
+      if (!isActive) {
+        return res.status(403).json({message: "User bloked!"})
+      }
       const { emails } = req.body;
       const regEx = new RegExp(`^(${emails.join('|')})$`);
 
@@ -44,6 +52,10 @@ class usersController {
       const user = await User.findOne({email: req.user.email})
       if (!user) {
         return res.status(403).json({message: "User is anonym!"})
+      }
+      const isActive = user.isActive;
+      if (!isActive) {
+        return res.status(403).json({message: "User bloked!"})
       }
 
       const users = await User.find();
