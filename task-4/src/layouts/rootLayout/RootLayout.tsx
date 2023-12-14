@@ -1,25 +1,42 @@
-import { FC, ReactElement } from 'react';
+import { FC, ReactElement, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from '../../components/3-organism/Header';
 import classes from "./style.module.scss";
+import PageLoader from '../../components/1-atom/pageLoader/PageLoader';
+import { useCheckUserQuery } from '../../API/AuthAPI';
+import { useAppDispatch } from '../../hooks/redux';
+import {currentUserSlice} from '../../store/reducers/currentUserSlice';
 
 type Props = unknown;
 
 const RootLayout: FC<Props> = (): ReactElement => {
+  const dispath = useAppDispatch();
+  const { setCurentUser } = currentUserSlice.actions;
+  const { data, isLoading } = useCheckUserQuery();
+  
+  useEffect(()=>{    
+    if (data) {
+      dispath(setCurentUser({
+        email: data.user.email,
+        token: data.token,
+      }))
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[data])
   return (
     <>
-      <style type="text/css">
-        {`
-          .h-100vh {
-            min-height: calc(100vh - 56px);
-          }
-        `}
-      </style>
-
-      <Header />
-      <main className={classes.main}>
-        <Outlet />
-      </main>
+      {
+        isLoading 
+        ?
+        <PageLoader />
+        :
+        <>
+          <Header />
+          <main className={classes.main}>
+            <Outlet />
+          </main>
+        </>
+      }
     </>
   );
 };

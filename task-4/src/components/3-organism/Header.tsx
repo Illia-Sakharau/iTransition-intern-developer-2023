@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FC, ReactElement } from 'react';
 import { NavRoutes } from '../../types/routes';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
@@ -15,8 +15,9 @@ const Header: FC = (): ReactElement => {
   const { email } = useAppSelector(state=> state.currentUserSlice)
 
   const handleSignOut = () => {
-    dispath(removeCurentUser())
-    navigate(NavRoutes.login)
+    localStorage.removeItem('token');
+    dispath(removeCurentUser());
+    navigate(NavRoutes.login);
   }
 
   return (
@@ -30,8 +31,13 @@ const Header: FC = (): ReactElement => {
                 <Button variant="outline-danger" onClick={handleSignOut}>SignOut</Button>
               </>
               : <>
-                <Button href={NavRoutes.login}>Login</Button>
-                <Button variant="link" href={NavRoutes.registration}>Registration</Button>
+                <Link to={NavRoutes.login}>
+                  <Button>Login</Button>
+                </Link>
+                <Link to={NavRoutes.registration}>
+                  <Button variant="link" >Registration</Button>
+                </Link>
+                
               </>
             }
           </ButtonToolbar>

@@ -5,6 +5,11 @@ export const AuthAPI = createApi({
   reducerPath: 'authAPI',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://task4backend.onrender.com/auth',
+    prepareHeaders: (headers) => {
+        const token = localStorage.getItem('token')
+        headers.set('Authorization', `Bearer ${token}`)
+        return headers
+    }
   }),
   endpoints: (build) => ({
     createUser: build.mutation<AuthRespData, RegistrationReqBody>({
@@ -21,7 +26,12 @@ export const AuthAPI = createApi({
         body,
       })
     }),
+    checkUser: build.query<AuthRespData, void>({
+      query: () => ({
+        url: '/check',
+      }),
+    }),
   })
 })
 
-export const {useLoginUserMutation, useCreateUserMutation} = AuthAPI;
+export const {useLoginUserMutation, useCreateUserMutation, useCheckUserQuery} = AuthAPI;

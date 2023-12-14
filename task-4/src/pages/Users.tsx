@@ -4,7 +4,7 @@ import { NavRoutes } from '../types/routes';
 import { useAuth } from '../hooks/useAuth';
 import UserTable from '../components/3-organism/UserTable';
 import { useGetUsersQuery } from '../API/UserAPI';
-import { Spinner } from 'react-bootstrap';
+import PageLoader from '../components/1-atom/pageLoader/PageLoader';
 
 type Props = unknown;
 
@@ -17,14 +17,9 @@ const Users: FC<Props> = (): ReactElement => {
       {!isAuth && <Navigate to={NavRoutes.login} replace={true} />}
       {isLoading
         ? 
-        <>
-          <Spinner animation="border" role="status" />
-          <span>Loading...</span>
-        </> 
+          <PageLoader />
         :
-        <>
           <UserTable usersList={data}/>
-        </>
       }
     </>    
   );
