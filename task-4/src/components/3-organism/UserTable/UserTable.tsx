@@ -3,12 +3,14 @@ import { Container, Table } from 'react-bootstrap';
 import { UserInfo } from '../../../types/users';
 import TableHeader from './components/TableHeader';
 import TableRaw from './components/TableRaw';
+import { useAppSelector } from '../../../hooks/redux';
 
 type Props = {
   usersList?: UserInfo[];
 };
 
 const UserTable: FC<Props> = ({usersList}): ReactElement => {
+  const {selectedUsers} = useAppSelector(state=>state.selectedUsersSlice);
   
   return (
     <>
@@ -18,7 +20,10 @@ const UserTable: FC<Props> = ({usersList}): ReactElement => {
             <Table size="md" responsive striped hover>
               <TableHeader />
               <tbody>
-                {usersList?.map((user) => <TableRaw key={user._id} userInfo={user}/>)}
+                {usersList?.map((user) => {
+                  const isSelectedUser = selectedUsers.includes(user.email);
+                  return <TableRaw key={user._id} userInfo={user} isSelectedUser={isSelectedUser}/>
+                })}
               </tbody>
             </Table>
           :

@@ -23,10 +23,7 @@ const LoginForm: FC<Props> = ({ handleSubmit, isLoading, error }): ReactElement 
       email: email,
       password: password
     })
-  }
-
-  console.log(error);
-  
+  }  
 
   return (
     <>
