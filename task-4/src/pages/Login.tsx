@@ -15,8 +15,8 @@ const Login: FC = (): ReactElement => {
   const { setCurentUser } = currentUserSlice.actions;
   const [loginUser, {isLoading, error}]  = useLoginUserMutation();
   
-  const handleLogin =  (props: {email: string; password: string}) => {
-    loginUser(props)
+  const handleLogin =  async (props: {email: string; password: string}) => {
+    await loginUser(props)
       .then((resp)=> {
         const data = (resp as AuthResp).data;
         localStorage.setItem('token', data.token)
@@ -24,10 +24,10 @@ const Login: FC = (): ReactElement => {
           name: data.user.username,
           email: data.user.email,
           token: data.token,
-        }))
+        }));
         navigate(NavRoutes.users)
       })
-      .catch(error => console.log(error))
+      .catch(error => console.log(error));
   }
 
   return (

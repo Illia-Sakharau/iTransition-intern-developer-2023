@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import { FC, ReactElement } from 'react';
+import { FC, ReactElement, useEffect } from 'react';
 import { NavRoutes } from '../types/routes';
 import { useAuth } from '../hooks/useAuth';
 import UserTable from '../components/3-organism/UserTable/UserTable';
@@ -12,9 +12,14 @@ type Props = unknown;
 
 const Users: FC<Props> = (): ReactElement => {
   const {isAuth} = useAuth();
-  useGetUsersQuery();
+  const { refetch } = useGetUsersQuery();
   const { isLoading, users } = useAppSelector(state=>state.usersSlice)
   
+  useEffect(() => {
+    refetch();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <>
       {!isAuth && <Navigate to={NavRoutes.login} replace={true} />}

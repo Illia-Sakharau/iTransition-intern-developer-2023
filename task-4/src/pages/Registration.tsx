@@ -18,7 +18,7 @@ const Registration: FC<Props> = (): ReactElement => {
   const [createUser, {isLoading, error}] = useCreateUserMutation()
   
   const handleRegistration = async (props: RegistrationReqBody) => {
-    createUser(props)
+    await createUser(props)
       .then((resp)=> {
         const data = (resp as AuthResp).data;
         localStorage.setItem('token', data.token)
