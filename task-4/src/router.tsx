@@ -6,6 +6,7 @@ import Auth from './components/4-layouts/auth/Auth';
 import Login from './pages/Login';
 import { NavRoutes } from './types/routes';
 import Registration from './pages/Registration';
+import NotFound from './pages/404';
 
 export const Router = createBrowserRouter([
   {
@@ -34,4 +35,8 @@ export const Router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: NavRoutes.notFoundPagePath,
+    element: <NotFound />,
+  }
 ]);
