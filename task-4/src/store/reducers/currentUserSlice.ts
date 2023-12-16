@@ -1,4 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { UserAPI } from '../../API/UserAPI';
 
 export type CurrentUserInfo = {
   email: string | null;
@@ -27,6 +28,25 @@ export const currentUserSlice = createSlice({
       state.name = null;
     },
   },
+  extraReducers: (builder) => {
+    builder.addMatcher(
+      UserAPI.endpoints.setUsersStatus.matchRejected,
+      (state) => {
+        state.email = null,
+        state.token = null,
+        state.name = null
+      }
+    ),
+    builder.addMatcher(
+      UserAPI.endpoints.deleteUsers.matchRejected,
+      (state) => {
+        state.email = null,
+        state.token = null,
+        state.name = null
+      }
+    )
+
+  }
 });
 
 export default currentUserSlice.reducer;
