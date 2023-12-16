@@ -4,14 +4,16 @@ import { FC, ReactElement } from 'react';
 
 type Props = {
   isActive: boolean;
+  action: () => void;
   isHeader?: boolean;
 };
 
-const CheckboxCell: FC<Props> = ({ isActive, isHeader }): ReactElement => {
+const CheckboxCell: FC<Props> = ({ isActive, action, isHeader }): ReactElement => {
   const inner = <Form.Check
   type='checkbox'
   id={`default-checkbox`}
   checked={isActive}
+  onChange={action}
 />
   return (<>
     {

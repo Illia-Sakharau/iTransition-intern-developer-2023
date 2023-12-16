@@ -16,6 +16,7 @@ export const selectedUsersSlice = createSlice({
   reducers: {
     selectUser(state, action: PayloadAction<Email>) {
       state.selectedUsers.push(action.payload)
+      state.selectedUsers = [...(new Set(state.selectedUsers))]
     },
     unselectUser(state, action: PayloadAction<Email>) {
       const index = state.selectedUsers.indexOf(action.payload)
