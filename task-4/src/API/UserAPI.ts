@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { StatusReqBody, UserInfo } from "../types/users";
+import { DeleteReqBody, StatusReqBody, UserInfo } from "../types/users";
 
 export const UserAPI = createApi({
   reducerPath: 'userAPI',
@@ -24,8 +24,15 @@ export const UserAPI = createApi({
         body,
       })
     }),
+    deleteUsers: build.mutation<UserInfo[], DeleteReqBody>({
+      query: (body) => ({
+        url: '/delete',
+        method: 'DELETE',
+        body,
+      })
+    }),
   })
 })
 
-export const {useGetUsersQuery, useSetUsersStatusMutation} = UserAPI;
+export const {useGetUsersQuery, useSetUsersStatusMutation, useDeleteUsersMutation} = UserAPI;
 

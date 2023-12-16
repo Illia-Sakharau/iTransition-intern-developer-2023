@@ -34,3 +34,7 @@ export type StatusReqBody = {
   emails: string[];
   isActive: boolean;
 }
+
+export type DeleteReqBody = {
+  emails: string[];
+}

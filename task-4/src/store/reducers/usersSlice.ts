@@ -58,6 +58,27 @@ export const usersSlice = createSlice({
         state.isLoading = true;
         state.users = [];
       }
+    ),
+    builder.addMatcher(
+      UserAPI.endpoints.deleteUsers.matchPending,
+      (state) => {
+        state.isLoading = true;
+        state.users = [];
+      }
+    ),
+    builder.addMatcher(
+      UserAPI.endpoints.deleteUsers.matchFulfilled,
+      (state, { payload }) => {
+        state.isLoading = false;
+        state.users = payload;
+      }
+    ),
+    builder.addMatcher(
+      UserAPI.endpoints.deleteUsers.matchRejected,
+      (state) => {
+        state.isLoading = true;
+        state.users = [];
+      }
     )
   }
 });
