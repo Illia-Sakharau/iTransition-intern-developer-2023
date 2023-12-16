@@ -4,9 +4,10 @@ import { FC, ReactElement } from 'react';
 type Props = {
   isHeader?: boolean;
   titles: string[];
+  isActive?: boolean;
 };
 
-const StringCell: FC<Props> = ({ isHeader, titles }): ReactElement => {
+const StringCell: FC<Props> = ({ isHeader, titles, isActive = true }): ReactElement => {
   const inner = titles.map((title, i) => {
     return (
       <div key={title} className={classes[`${i === 0 ? 'first' : 'secondary'}`]} >
@@ -14,11 +15,13 @@ const StringCell: FC<Props> = ({ isHeader, titles }): ReactElement => {
       </div>
     )
   });
+  const cellClassName = isActive ? classes.cell : `${classes.cell} opacity-50`;
+
   return (<>
     {
       isHeader
-        ? <th className={classes.cell}>{inner}</th>
-        : <td className={classes.cell}>{inner}</td>
+        ? <th className={cellClassName}>{inner}</th>
+        : <td className={cellClassName}>{inner}</td>
     }
   </>
   );

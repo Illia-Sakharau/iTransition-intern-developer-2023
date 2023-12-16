@@ -31,12 +31,12 @@ const TableRaw: FC<Props> = ({userInfo, isSelectedUser}): ReactElement => {
   }
 
   return (
-    <tr onClick={handleClick} style={{cursor:'pointer'}}>
+    <tr onClick={handleClick} style={{cursor:'pointer'}} >
       <CheckboxCell isActive={isSelected} action={handleClick} />
-      <StringCell titles={[username, userPosition]} />
-      <StringCell titles={[email]} />
-      <StringCell titles={[date,time]} />
-      <StringCell titles={[status]} />
+      <StringCell isActive={isActive} titles={[username, userPosition]}/>
+      <StringCell isActive={isActive} titles={[email]} />
+      <StringCell isActive={isActive} titles={[date,time]} />
+      <StringCell isActive={isActive} titles={[status]} />
     </tr>
   );
 };
