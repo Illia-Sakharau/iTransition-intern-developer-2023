@@ -29,3 +29,8 @@ export type RegistrationReqBody = {
   password: string;
   position?: string;
 }
+
+export type StatusReqBody = {
+  emails: string[];
+  isActive: boolean;
+}

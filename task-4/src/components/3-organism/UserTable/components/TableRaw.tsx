@@ -4,7 +4,7 @@ import { UserInfo } from '../../../../types/users';
 import { USER_POSITION } from '../../../../constants';
 import CheckboxCell from '../../../1-atom/checkboxCell/CheckboxCell';
 import { useAppDispatch } from '../../../../hooks/redux';
-import { selectedUsersSlice } from '../../../../store/reducers/selectedUsers';
+import { selectedUsersSlice } from '../../../../store/reducers/selectedUsersSlice';
 import { prepareDate } from '../utils/prepareDate';
 
 type Props = {

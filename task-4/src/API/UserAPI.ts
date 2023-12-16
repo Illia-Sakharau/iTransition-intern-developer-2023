@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { UserInfo } from "../types/users";
+import { StatusReqBody, UserInfo } from "../types/users";
 
 export const UserAPI = createApi({
   reducerPath: 'userAPI',
@@ -17,8 +17,15 @@ export const UserAPI = createApi({
         url: '/all',
       }),
     }),
+    setUsersStatus: build.mutation<UserInfo[], StatusReqBody>({
+      query: (body) => ({
+        url: '/status',
+        method: 'POST',
+        body,
+      })
+    }),
   })
 })
 
-export const {useGetUsersQuery} = UserAPI;
+export const {useGetUsersQuery, useSetUsersStatusMutation} = UserAPI;
 

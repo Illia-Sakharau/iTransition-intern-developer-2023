@@ -5,12 +5,15 @@ import { useAuth } from '../hooks/useAuth';
 import UserTable from '../components/3-organism/UserTable/UserTable';
 import { useGetUsersQuery } from '../API/UserAPI';
 import PageLoader from '../components/1-atom/pageLoader/PageLoader';
+import BulkBar from '../components/3-organism/bulkBar/BulkBar';
+import { useAppSelector } from '../hooks/redux';
 
 type Props = unknown;
 
 const Users: FC<Props> = (): ReactElement => {
   const {isAuth} = useAuth();
-  const { data, isLoading } = useGetUsersQuery();
+  useGetUsersQuery();
+  const { isLoading, users } = useAppSelector(state=>state.usersSlice)
   
   return (
     <>
@@ -19,7 +22,10 @@ const Users: FC<Props> = (): ReactElement => {
         ? 
           <PageLoader />
         :
-          <UserTable usersList={data}/>
+          <>
+            <BulkBar />
+            <UserTable usersList={users}/>
+          </>
       }
     </>    
   );
