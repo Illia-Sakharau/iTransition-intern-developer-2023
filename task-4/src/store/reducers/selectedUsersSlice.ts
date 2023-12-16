@@ -14,8 +14,8 @@ export const selectedUsersSlice = createSlice({
   name: 'manuallyFormData',
   initialState,
   reducers: {
-    selectUser(state, action: PayloadAction<Email>) {
-      state.selectedUsers.push(action.payload)
+    selectUser(state, action: PayloadAction<Email[]>) {
+      state.selectedUsers.push(...action.payload)
       state.selectedUsers = [...(new Set(state.selectedUsers))]
     },
     unselectUser(state, action: PayloadAction<Email>) {
