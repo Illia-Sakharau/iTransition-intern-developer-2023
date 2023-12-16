@@ -1,23 +1,14 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FC, ReactElement } from 'react';
 import { NavRoutes } from '../../types/routes';
-import { useAppDispatch } from '../../hooks/redux';
-import { currentUserSlice } from '../../store/reducers/currentUserSlice';
 import { useAuth } from '../../hooks/useAuth';
 import { Navbar, Button, Container, ButtonToolbar } from 'react-bootstrap';
 import Greeting from '../2-molecule/greeting/Greeting';
+import { useLogout } from '../../hooks/useLogout';
 
 const Header: FC = (): ReactElement => {
   const {isAuth, name} = useAuth();
-  const navigate = useNavigate();
-  const dispath = useAppDispatch();
-  const { removeCurentUser } = currentUserSlice.actions;
-
-  const handleSignOut = () => {
-    localStorage.removeItem('token');
-    dispath(removeCurentUser());
-    navigate(NavRoutes.login);
-  }
+  const { logout } = useLogout();
 
   return (
     <Navbar collapseOnSelect bg='dark' variant='dark' sticky='top'>
@@ -27,7 +18,7 @@ const Header: FC = (): ReactElement => {
             {isAuth
               ? <>
                 <Greeting name={(name as string)}/>
-                <Button variant="outline-danger" onClick={handleSignOut}>SignOut</Button>
+                <Button variant="outline-danger" onClick={logout}>SignOut</Button>
               </>
               : <>
                 <Link to={NavRoutes.login}>
