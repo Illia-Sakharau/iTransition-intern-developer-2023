@@ -1,5 +1,5 @@
 import classes from "./style.module.scss";
-import { FC, ReactElement, useEffect, useRef } from 'react';
+import { FC, ReactElement, RefObject, useEffect, useRef } from 'react';
 import FormCheck from 'react-bootstrap/FormCheck'
 
 type Props = {
@@ -16,7 +16,7 @@ const CheckboxCell: FC<Props> = ({ isActive, action, isHeader, isIndeterminate }
     id={`default-checkbox`}
     checked={isActive}
     onChange={action}
-    ref={checkRef}
+    ref={(checkRef as RefObject<HTMLInputElement>)}
   />
 
 

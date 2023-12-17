@@ -4,7 +4,7 @@ import {
 } from '@reduxjs/toolkit';
 import currentUserSlice from './reducers/currentUserSlice';
 import selectedUsersSlice from './reducers/selectedUsersSlice';
-import usersSlice from './reducers/UsersSlice';
+import usersSlice from './reducers/usersSlice';
 import { AuthAPI } from '../API/AuthAPI';
 import { UserAPI } from '../API/UserAPI';
 

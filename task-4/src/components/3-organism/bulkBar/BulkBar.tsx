@@ -1,6 +1,6 @@
 import { FC, ReactElement } from 'react';
 import { Container } from 'react-bootstrap';
-import BlockButton from './components/blockButton';
+import BlockButton from './components/BlockButton';
 import UnblockButton from './components/UnblockButton';
 import DeleteButton from './components/DeleteButton';
 
