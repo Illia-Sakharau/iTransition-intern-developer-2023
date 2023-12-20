@@ -2,8 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 import { Person } from '../../types/persons';
 import { PersonsAPI } from '../../API/PersonsAPI';
 
-const initialState: {list: Person[]} = {
-  list: []
+type Slice = {
+  list: Person[],
+}
+
+const initialState: Slice = {
+  list: [],
 };
 
 export const persons = createSlice({
@@ -11,12 +15,13 @@ export const persons = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addMatcher(
-      PersonsAPI.endpoints.getPersons.matchFulfilled,
-      (state, { payload }) => {
-        state.list = [...state.list, ...payload];
-      }
-    )
+    builder
+      .addMatcher(
+        PersonsAPI.endpoints.getPersons.matchFulfilled,
+        (state, { payload }) => {
+          state.list = [...state.list, ...payload];
+        }
+      )
   }
 });
 
