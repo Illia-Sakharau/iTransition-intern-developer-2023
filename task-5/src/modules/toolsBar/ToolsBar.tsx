@@ -2,6 +2,7 @@ import { FC } from "react";
 import { Container, Stack } from "react-bootstrap";
 import RegionInput from "./components/RegionInput";
 import SeedInput from "./components/SeedInput";
+import ErrorsInput from "./components/ErrorsInput";
 
 const ToolsBar: FC = () => {
 
@@ -10,6 +11,7 @@ const ToolsBar: FC = () => {
       <Container >
         <Stack direction="horizontal" gap={4}>
           <RegionInput />
+          <ErrorsInput />
           <SeedInput />
         </Stack>
       </Container>

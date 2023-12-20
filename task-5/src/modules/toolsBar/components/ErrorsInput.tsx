@@ -3,44 +3,49 @@ import { Form, Stack } from "react-bootstrap";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import { personsParams } from "../../../store/reducers/personsParams";
 import useDebounce from "../../../hooks/useDebounce";
-import RandomSeedBtn from "./RandomSeedBtn";
 import { persons } from "../../../store/reducers/persons";
 
-const SeedInput: FC = () => {
-  const input = useRef<HTMLInputElement>();
-  const { seed } = useAppSelector( state => state.personsParams );
+const ErrorsInput: FC = () => {
+  const errorInput = useRef<HTMLInputElement>();
+  const { errNum } = useAppSelector( state => state.personsParams );
   const dispatch = useAppDispatch();
-  const { setSeed } = personsParams.actions;
+  const { setErrNum } = personsParams.actions;
   const { cleanList } = persons.actions;
 
   const changeHandler = useDebounce<React.ChangeEvent<HTMLInputElement>>((e) => {
     let value = +e.target.value;
-    if (value < 0 || isNaN(value)) value = 0;
+    if (value < 0 || isNaN(value)) {
+      value = 0;
+    }
+    if (value > 1000) {
+      value = 1000;
+    }
     dispatch(cleanList())
-    dispatch(setSeed(value));
+    dispatch(setErrNum(value))
+
   }, 500)
 
   useEffect(() => {
-    if (input.current) {
-      input.current.value = seed.toString();
+    if (errorInput.current) {
+      errorInput.current.value = errNum.toString();
     }
-  },[seed])
+  },[errNum])
 
   return (
     <Stack direction="horizontal" gap={2}>
-      <Form.Label className="text-white" htmlFor="seed">Seed:</Form.Label>
+      <Form.Label className="text-white" htmlFor="seed">Errors:</Form.Label>
       <Form.Control
-        ref={input as React.RefObject<HTMLInputElement>}
+        ref={errorInput as React.RefObject<HTMLInputElement>}
         
         id="seed"
         type="number"
         min={0}
-        defaultValue={seed}
+        max={1000}
+        defaultValue={errNum}
         onChange={changeHandler}
       />
-      <RandomSeedBtn />
     </Stack>
   );
 };
 
-export default SeedInput;
+export default ErrorsInput;

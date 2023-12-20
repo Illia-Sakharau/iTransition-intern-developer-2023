@@ -10,7 +10,7 @@ import TableRaw from "./components/TableRaw";
 const PersonsTable: FC = () => {
   const { list } = useAppSelector( state => state.persons );
   const params = useAppSelector( state => state.personsParams );
-  const {isLoading, refetch, isError} = useGetPersonsQuery(params);
+  const {isFetching, refetch, isError} = useGetPersonsQuery(params);
 
   return (
     <Container>
@@ -22,7 +22,7 @@ const PersonsTable: FC = () => {
           })}
         </tbody>
       </Table>
-      {isLoading && <Spinner animation="border" variant="info" className="d-block mx-auto"/>}
+      {isFetching && <Spinner animation="border" variant="info" className="d-block mx-auto"/>}
       <ErrorBlock isError={isError} refetch={refetch} />
     </Container>
   );

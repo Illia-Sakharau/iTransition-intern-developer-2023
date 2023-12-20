@@ -13,7 +13,11 @@ const initialState: Slice = {
 export const persons = createSlice({
   name: 'usersList',
   initialState,
-  reducers: {},
+  reducers: {
+    cleanList(state) {
+      state.list = [];
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addMatcher(
