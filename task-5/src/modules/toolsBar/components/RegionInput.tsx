@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Form } from "react-bootstrap";
+import { Form, Stack } from "react-bootstrap";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import { personsParams } from "../../../store/reducers/personsParams";
 import { Region } from "../../../types/persons";
@@ -14,11 +14,10 @@ const RegionInput: FC = () => {
   }
 
   return (
-    <>
+    <Stack direction="horizontal" gap={2}>
       <Form.Label className="text-white" htmlFor="region">Region:</Form.Label>
       <Form.Select 
         id="region"
-        aria-label="Default select example"
         onChange={changeHandler}
         value={ln}
       >
@@ -26,7 +25,7 @@ const RegionInput: FC = () => {
         <option value="ru">Russia</option>
         <option value="ge">Georgia</option>
       </Form.Select>
-    </>
+    </Stack>
   );
 };
 
