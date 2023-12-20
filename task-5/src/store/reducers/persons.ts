@@ -19,7 +19,7 @@ export const persons = createSlice({
       .addMatcher(
         PersonsAPI.endpoints.getPersons.matchFulfilled,
         (state, { payload }) => {
-          state.list = [...state.list, ...payload];
+          state.list = payload;
         }
       )
   }

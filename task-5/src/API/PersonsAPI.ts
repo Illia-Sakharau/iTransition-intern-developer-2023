@@ -6,6 +6,7 @@ export const PersonsAPI = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://task-5-backend.onrender.com',
   }),
+  keepUnusedDataFor: 0,
   endpoints: (build) => ({
     getPersons: build.query<Person[], QueryParams>({
       query: (parsms) => ({
