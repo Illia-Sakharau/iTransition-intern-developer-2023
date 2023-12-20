@@ -1,11 +1,12 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { QueryParams, Region } from '../../types/persons';
+import generateSeed from '../../utils/generateSeed';
 
 const initialState: QueryParams = {
-  seed: Math.trunc(Math.random() * 1000),
+  seed: generateSeed(),
   page: 1,
   size: 20,
-  ln: 'ge',
+  ln: 'en',
   errNum: 0
 };
 
