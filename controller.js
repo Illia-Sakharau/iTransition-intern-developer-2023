@@ -1,12 +1,12 @@
-const createUser = require('./utils/createUser');
+const createUsersList = require('./utils/createUsersList');
 
 class usersController {
   async getPersons (req, res) {
     try {
-      const {seed, ln} = req.query;
-      const user = createUser(seed, 1, ln);
+      const {seed, ln, page, size} = req.query;
+      const users = createUsersList(seed, ln, page, size);
 
-      res.json({user, seed})
+      res.json(users)
     } catch (error) {
       console.log(error);
       res.status(400).json({message: 'Person error'})
