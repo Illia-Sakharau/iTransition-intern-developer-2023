@@ -1,5 +1,7 @@
-const createUser = require('./createUser');
-const { generateTypos, calcErrCount } = require('./typos');
+const createUser = require('./user/createUser');
+const { generateTypos } = require('./typos/typos');
+const calcErrCount = require('./typos/calcErrCount');
+
 
 function createUsersList({seed, ln, page, size, errNum}) {
   const fromIndex = (size * (page - 1)) + 1;
