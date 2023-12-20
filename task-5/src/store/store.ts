@@ -4,14 +4,12 @@ import {
 } from '@reduxjs/toolkit';
 
 import { PersonsAPI } from '../API/PersonsAPI';
-
-// import currentUserSlice from './reducers/currentUserSlice';
-// import selectedUsersSlice from './reducers/selectedUsersSlice';
-// import usersSlice from './reducers/usersSlice';
-// import { AuthAPI } from '../API/AuthAPI';
-// import { UserAPI } from '../API/PersonsAPI';
+import personsParams from './reducers/personsParams';
+import persons from './reducers/persons';
 
 const rootReducer = combineReducers({
+  personsParams,
+  persons,
   [PersonsAPI.reducerPath]: PersonsAPI.reducer,
 });
 
