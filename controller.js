@@ -3,8 +3,8 @@ const createUsersList = require('./utils/createUsersList');
 class usersController {
   async getPersons (req, res) {
     try {
-      const {seed, ln, page, size} = req.query;
-      const users = createUsersList(seed, ln, page, size);
+      const {seed, ln, page, size, errNum} = req.query;
+      const users = createUsersList({seed, ln, page, size, errNum});
 
       res.json(users)
     } catch (error) {

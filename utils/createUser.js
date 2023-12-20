@@ -2,8 +2,7 @@ const customFaker = require('./customFaker');
 const createAddress = require('./createAddress');
 
 function createUser(seed, index, locale) {
-  const preparedSeed = +`${index}${seed}${index}`;
-  const faker = customFaker(preparedSeed, locale);
+  const faker = customFaker(seed, locale);
 
   return ({
     index,
