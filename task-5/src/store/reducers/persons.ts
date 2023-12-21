@@ -21,15 +21,9 @@ export const persons = createSlice({
   extraReducers: (builder) => {
     builder
       .addMatcher(
-        PersonsAPI.endpoints.getPersons.matchPending,
-        (state) => {
-          state.list = [];
-        }
-      )
-      .addMatcher(
         PersonsAPI.endpoints.getPersons.matchFulfilled,
         (state, { payload }) => {
-          state.list = [...state.list, ...payload];
+          state.list.push(...payload);
         }
       )
   }

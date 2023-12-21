@@ -3,6 +3,7 @@ import { Form, Stack } from "react-bootstrap";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import { personsParams } from "../../../store/reducers/personsParams";
 import useDebounce from "../../../hooks/useDebounce";
+import useCleanPersonList from "../../../hooks/useCleanPersonList";
 
 const ErrorsInput: FC = () => {
   const errorInput = useRef<HTMLInputElement>();
@@ -10,6 +11,7 @@ const ErrorsInput: FC = () => {
   const { errNum } = useAppSelector( state => state.personsParams );
   const dispatch = useAppDispatch();
   const { setErrNum } = personsParams.actions;
+  const cleanPersonList = useCleanPersonList();
 
   const changeHandler = useDebounce<React.ChangeEvent<HTMLInputElement>>((e) => {
     let value = +e.target.value;
@@ -19,6 +21,7 @@ const ErrorsInput: FC = () => {
     if (value > 1000) {
       value = 1000;
     }
+    cleanPersonList();
     dispatch(setErrNum(value))
 
   }, 500)

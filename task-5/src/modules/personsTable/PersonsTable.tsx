@@ -5,6 +5,7 @@ import { useAppSelector } from "../../hooks/redux";
 import ErrorBlock from "./components/ErrorBlock";
 import TableHeader from "./components/TableHeader";
 import TableRaw from "./components/TableRaw";
+import InfiniteScrollBlock from "./components/InfiniteScrollBlock";
 
 
 const PersonsTable: FC = () => {
@@ -12,16 +13,19 @@ const PersonsTable: FC = () => {
   const params = useAppSelector( state => state.personsParams );
   const {isFetching, refetch, isError} = useGetPersonsQuery(params);
 
+
+
   return (
     <Container>
       <Table size="md" responsive striped hover>
         <TableHeader />
-        <tbody>
-          {list?.map((person) => {
-            return <TableRaw key={person.index} personInfo={person}/>
-          })}
-        </tbody>
+          <tbody>
+            {list?.map((person) => {
+              return <TableRaw key={person.index} personInfo={person}/>
+            })}
+          </tbody>
       </Table>
+      {!isFetching && !isError && <InfiniteScrollBlock />}
       {isFetching && <Spinner animation="border" variant="info" className="d-block mx-auto"/>}
       <ErrorBlock isError={isError} refetch={refetch} />
     </Container>

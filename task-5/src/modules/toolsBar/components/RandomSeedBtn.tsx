@@ -4,13 +4,16 @@ import { ArrowRepeat } from 'react-bootstrap-icons';
 import { useAppDispatch } from "../../../hooks/redux";
 import { personsParams } from "../../../store/reducers/personsParams";
 import generateSeed from "../../../utils/generateSeed";
+import useCleanPersonList from "../../../hooks/useCleanPersonList";
 
 const RandomSeedBtn: FC = () => {
   const dispatch = useAppDispatch();
   const { setSeed } = personsParams.actions;
+  const cleanPersonList = useCleanPersonList();
   
   const clickHandler = () => {
     const newSeed = generateSeed();
+    cleanPersonList();
     dispatch(setSeed(newSeed));
   }
 

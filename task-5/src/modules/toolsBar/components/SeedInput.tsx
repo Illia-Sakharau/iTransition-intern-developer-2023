@@ -4,16 +4,19 @@ import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import { personsParams } from "../../../store/reducers/personsParams";
 import useDebounce from "../../../hooks/useDebounce";
 import RandomSeedBtn from "./RandomSeedBtn";
+import useCleanPersonList from "../../../hooks/useCleanPersonList";
 
 const SeedInput: FC = () => {
   const input = useRef<HTMLInputElement>();
   const { seed } = useAppSelector( state => state.personsParams );
   const dispatch = useAppDispatch();
   const { setSeed } = personsParams.actions;
+  const cleanPersonList = useCleanPersonList();
 
   const changeHandler = useDebounce<React.ChangeEvent<HTMLInputElement>>((e) => {
     let value = +e.target.value;
     if (value < 0 || isNaN(value)) value = 0;
+    cleanPersonList();
     dispatch(setSeed(value));
   }, 500)
 
