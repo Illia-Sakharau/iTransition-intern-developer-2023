@@ -16,7 +16,6 @@ const InfiniteScrollBlock: FC = () => {
     } else {
       dispatch(setPage(page + 1))
     }
-    console.log(515)
   }
 
   return (
