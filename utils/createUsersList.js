@@ -10,7 +10,7 @@ function createUsersList({seed, ln, page, size, errNum}) {
   const errCount = calcErrCount(errNum, +seed);
 
   for( let i = fromIndex; i <= toIndex; i++) {
-    const userSeed = +`${i}${seed}${errCount}`;
+    const userSeed = +`${i}${seed}${i}`;
     const user = createUser(userSeed, i, ln);
     const userWithTypes = generateTypos(userSeed, errCount, user);
     usersList.push(userWithTypes);
