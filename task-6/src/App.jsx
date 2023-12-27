@@ -11,6 +11,10 @@ const router = createBrowserRouter([
     path: '/:id',
     element: <Space />,    
   },
+  {
+    path: '*',
+    element: <MainPage />,    
+  },
 ]);
 
 function App() {
