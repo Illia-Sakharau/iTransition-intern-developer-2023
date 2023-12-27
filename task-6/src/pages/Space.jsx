@@ -1,15 +1,12 @@
-import { Excalidraw, MainMenu } from "@excalidraw/excalidraw";
-import { CustomMenu } from '../components/customMenu'
+import { useParams } from 'react-router-dom';
+import { CustomCanvas } from '../components/customCanvas'
 
 export const Space = () => {
+  const { id } = useParams();
 
   return (
     <>
-      <div style={{ height: "calc(100vh)" }}>
-        <Excalidraw>
-          <CustomMenu />
-        </Excalidraw>
-      </div>
+      <CustomCanvas id={id}/>
     </>
   );
 

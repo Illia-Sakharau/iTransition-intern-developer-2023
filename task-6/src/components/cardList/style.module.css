@@ -5,6 +5,7 @@
   flex-wrap: wrap;
   gap: 16px;
   padding: 32px;
+  margin: 0 auto;
   
   max-width: 1440px;
   width: 100vw;

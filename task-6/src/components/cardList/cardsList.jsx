@@ -11,7 +11,7 @@ export const CardsList = () => {
   }
 
   const onChange = (value) => {
-    if (JSON.stringify(spacesList) !== JSON.stringify(value)) {
+    if (value && JSON.stringify(spacesList) !== JSON.stringify(value)) {
       setSpacesList(value)
     }
   }
@@ -20,7 +20,7 @@ export const CardsList = () => {
 
   return (
     <div className={classes.wrapper}>
-      {spacesList.map((space)=> <SpaceCard key={space} space={space} />)}
+      {spacesList && spacesList.map((space)=> <SpaceCard key={space} space={space} />)}
       <button className={classes.btn} onClick={handleAddSpace}>Add New Space</button>
     </div>
   )
