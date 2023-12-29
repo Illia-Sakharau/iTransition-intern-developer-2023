@@ -7,10 +7,4 @@ export default defineConfig({
   define: {
     "process.env.IS_PREACT": JSON.stringify("true"),
   },
-  build: {
-    manifest: true,
-    rollupOptions: {
-      input: './src/main.jsx',
-    },
-  },
 })
