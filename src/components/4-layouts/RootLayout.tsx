@@ -5,7 +5,9 @@ import Menu from '../3-organisms/menu/Menu';
 const RootLayout = () => {
 
   return (
-    <Flex>
+    <Flex
+      flexDirection={{base: 'column-reverse', md: 'row'}}
+    >
       <Menu />
       <VStack
         as="main"

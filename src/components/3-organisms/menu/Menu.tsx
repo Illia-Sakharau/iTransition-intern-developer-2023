@@ -1,4 +1,4 @@
-import { Divider, Spacer, VStack, useColorModeValue } from '@chakra-ui/react';
+import { Divider, Flex, Spacer, useColorModeValue, useMediaQuery } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './components/ColorModeSwitcher';
 import HomeButton from './components/HomeButton';
 import NavButton from './components/NavButton';
@@ -8,11 +8,19 @@ import { GAMES_INGO } from '../../../costants/games';
 
 const Menu = () => {
   const bg = useColorModeValue('gray.200', 'gray.900');
+  const [isLargerThanMd] = useMediaQuery('(min-width: 768px)');
 
   return (
-    <VStack bg={bg} p={4}>
+    <Flex
+      position={'sticky'}
+      bottom={0}
+      flexDirection={{base: 'row-reverse', md: 'column'}}
+      gap={3}
+      bg={bg}
+      p={4}
+    >
       <HomeButton />
-      <Divider/>
+      <Divider  orientation={isLargerThanMd ? 'horizontal' : 'vertical'}/>
       {
         GAMES_INGO.map((game) => (
           <NavButton 
@@ -24,7 +32,7 @@ const Menu = () => {
       }
       <Spacer />
       <ColorModeSwitcher />
-    </VStack>
+    </Flex>
   );
 };
 
