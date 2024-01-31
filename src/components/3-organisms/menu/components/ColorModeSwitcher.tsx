@@ -15,7 +15,7 @@ export const ColorModeSwitcher = (props: ColorModeSwitcherProps) => {
 
   return (
     <IconButton
-      size="sm"
+      size="md"
       fontSize="lg"
       variant="ghost"
       color="current"

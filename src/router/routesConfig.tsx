@@ -3,8 +3,9 @@ import { NavRoutes } from './routes';
 import RootLayout from '../components/4-layouts/RootLayout';
 import ErrorPage from '../pages/ErrorPage';
 import HomePage from '../pages/HomePage';
-import GamePage from '../pages/GamePage';
+import GameLayout from '../components/4-layouts/GameLayout';
 import NotFoundPage from '../pages/NotFoundPage';
+import { GAMES_INGO } from '../costants/games';
 
 export const routes = [
   {
@@ -19,8 +20,12 @@ export const routes = [
       {
         path: NavRoutes.gamePagePath,
         element: (
-          <GamePage />
+          <GameLayout />
         ),
+        children: GAMES_INGO.map((game) => ({
+          path: game.id,
+          element: game.page,
+        }))
       },
       {
         path: '*',

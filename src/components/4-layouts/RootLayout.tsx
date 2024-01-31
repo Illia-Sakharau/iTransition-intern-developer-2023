@@ -1,12 +1,12 @@
 import { Outlet } from 'react-router-dom';
-import { Flex, VStack, useColorModeValue } from '@chakra-ui/react';
+import { Flex, VStack } from '@chakra-ui/react';
+import Menu from '../3-organisms/menu/Menu';
 
 const RootLayout = () => {
-  const bg = useColorModeValue('gray.100', 'gray.900');
 
   return (
-    <Flex bg={bg}>
-      <div>MENU</div>
+    <Flex>
+      <Menu />
       <VStack
         as="main"
         alignItems="stretch"
