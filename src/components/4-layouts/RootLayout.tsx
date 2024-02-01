@@ -14,6 +14,7 @@ const RootLayout = () => {
         alignItems="stretch"
         minH={'100vh'}
         spacing={'0'}
+        flexGrow={1}
       >
         <Outlet />
       </VStack>
