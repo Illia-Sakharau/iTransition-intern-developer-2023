@@ -26,7 +26,7 @@ const Menu = () => {
           <NavButton 
             key={game.id}
             to={`${NavRoutes.gamePagePath}/${game.id}`}
-            icon={game.icon}
+            icon={game.icon()}
             aria-label={`Navigate to ${game.title} page`}
           />
         ))
