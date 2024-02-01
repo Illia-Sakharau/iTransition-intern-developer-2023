@@ -24,6 +24,7 @@ const Menu = () => {
       {
         GAMES_INGO.map((game) => (
           <NavButton 
+            key={game.id}
             to={`${NavRoutes.gamePagePath}/${game.id}`}
             icon={game.icon}
             aria-label={`Navigate to ${game.title} page`}
