@@ -1,8 +1,8 @@
-import { Button, Flex, HStack, Heading, useColorModeValue } from "@chakra-ui/react";
+import { Button, Flex, HStack } from "@chakra-ui/react";
 import { gameInfo } from "../../costants/games";
+import MyHeading from "../1-atoms/MyHeading";
 
 const GameHeading = (game: gameInfo) => {
-  const textColor = useColorModeValue('purple.900', 'white');
 
   const handleStartGame = () => {
     console.log(game);    
@@ -18,9 +18,7 @@ const GameHeading = (game: gameInfo) => {
         flexGrow={1}
       >
         {game.icon({boxSize: 12})}
-        <Heading as='h2' size='2xl' noOfLines={1} color={textColor}>
-          {game.title}
-        </Heading>
+        <MyHeading title={game.title} noOfLines={1}/>
       </HStack>
       <Button
         colorScheme="purple"

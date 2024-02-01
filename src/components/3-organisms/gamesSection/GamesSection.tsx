@@ -1,15 +1,13 @@
-import { Heading, SimpleGrid, VStack, useColorModeValue } from "@chakra-ui/react";
+import { SimpleGrid, VStack } from "@chakra-ui/react";
 import { GAMES_INGO } from "../../../costants/games";
 import GameCard from "./components/GameCard";
+import MyHeading from "../../1-atoms/MyHeading";
 
 const GamesSection = () => {
-  const textColor = useColorModeValue('purple.900', 'white');
 
   return (
     <VStack gap={4} alignSelf={'stretch'}>
-      <Heading as='h2' size='2xl' color={textColor}>
-        Games
-      </Heading>
+      <MyHeading title={'Games'}/>
       <SimpleGrid
         spacing={4}
         p={4}
