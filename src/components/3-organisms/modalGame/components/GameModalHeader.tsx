@@ -1,23 +1,25 @@
 import { HStack, ModalHeader, Spinner, Tag, Text } from "@chakra-ui/react";
+import { roomsInfo } from "../../../../types/rooms";
 
 type Props = {
-  aponent?: string;
+  room: roomsInfo;
 }
 
-const GameModalHeader = ({ aponent }: Props) => {
+const GameModalHeader = ({ room }: Props) => {
   const username = localStorage.getItem('username') || 'Anonimus';
+  const isOwner = room.owner === username;
 
   return (
     <ModalHeader textAlign={'center'}>
       <Tag size='lg' colorScheme='blue' borderRadius='full'>
-        {username} (you)
+        {room.owner} {isOwner && '(you)'}
       </Tag>
       {' VS '}
       { 
-        aponent 
+        room.aponent 
         ? 
         <Tag size='lg' colorScheme='red' borderRadius='full'>
-          {aponent}
+          {room.aponent} {!isOwner && '(you)'}
         </Tag>
         :
         <HStack display={'inline-flex'} ml={2} color={'purple.500'}>

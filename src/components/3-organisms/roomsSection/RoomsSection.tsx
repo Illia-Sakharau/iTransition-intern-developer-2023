@@ -5,9 +5,10 @@ import RoomCard from "./components/RoomCard";
 
 type Props = {
   rooms: roomsInfo[]
+  joinRoom: (room: roomsInfo) => void;
 }
 
-const RoomsSection = ({ rooms }:Props) => {
+const RoomsSection = ({ rooms, joinRoom }:Props) => {
   return (
     <VStack
       gap={4}
@@ -29,7 +30,13 @@ const RoomsSection = ({ rooms }:Props) => {
         </div>
         :
         <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
-          {rooms.map((room) => <RoomCard key={room.id} {...room}/>)}
+          {rooms.map((room) => (
+            <RoomCard 
+              key={room.id}
+              room={room}
+              handleJoin={() => joinRoom(room)}
+            />
+          ))}
         </SimpleGrid>
       }
     </VStack>

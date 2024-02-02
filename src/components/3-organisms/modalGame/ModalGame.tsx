@@ -1,21 +1,22 @@
 import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay } from "@chakra-ui/react";
 import { ReactNode } from "react";
 import GameModalHeader from "./components/GameModalHeader";
+import { roomsInfo } from "../../../types/rooms";
 
 type Props = {
   isOpen: boolean;
   onClose: () => void;
-  aponent?: string;
+  room: roomsInfo;
   game: ReactNode;
 }
 
-const ModalGame = ({ isOpen, onClose, aponent, game }: Props) => {
+const ModalGame = ({ isOpen, onClose, room, game }: Props) => {
 
   return (
     <Modal size={'6xl'} isCentered isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent m={{base: 2, md: 4, xl: 8}}>
-        <GameModalHeader aponent={aponent}/>
+        <GameModalHeader room={room}/>
         <ModalCloseButton />
 
         <ModalBody 

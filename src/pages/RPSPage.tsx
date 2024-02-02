@@ -1,12 +1,13 @@
-import { useOutletContext } from "react-router-dom";
 import RoomsSection from "../components/3-organisms/roomsSection/RoomsSection";
+import { useOutletContext } from "react-router-dom";
 import { ContextType } from "../components/4-layouts/GameLayout";
 
+
 const RPSPage = () => {
-  const { rooms } = useOutletContext<ContextType>();
+  const { rooms, joinRoom } = useOutletContext<ContextType>();
   
   return (
-    <RoomsSection rooms={rooms} />
+    <RoomsSection rooms={rooms} joinRoom={joinRoom} />
   );
 };
 

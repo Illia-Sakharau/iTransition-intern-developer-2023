@@ -4,10 +4,10 @@ import { ContextType } from "../components/4-layouts/GameLayout";
 
 
 const T3Page = () => {
-  const { rooms } = useOutletContext<ContextType>();
+  const { rooms, joinRoom } = useOutletContext<ContextType>();
   
   return (
-    <RoomsSection rooms={rooms} />
+    <RoomsSection rooms={rooms} joinRoom={joinRoom} />
   );
 };
 
