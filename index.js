@@ -65,6 +65,7 @@ io.of('/RPS').on('connection', (socket) => {
     RPS_ROOMS.splice(roomIndex, 1)
     io.of('/RPS').to(id).emit('room_closed')
     io.of('/RPS').emit('all_rooms', {rooms: RPS_ROOMS})
+    socket.leave(id)
   })
 
   socket.on('join_room', ({ id, aponent }) => {
