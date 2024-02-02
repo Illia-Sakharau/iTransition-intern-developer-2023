@@ -1,20 +1,13 @@
 import RoomsSection from "../components/3-organisms/roomsSection/RoomsSection";
-import { roomsInfo } from "../types/rooms";
+import { useOutletContext } from "react-router-dom";
+import { ContextType } from "../components/4-layouts/GameLayout";
+
 
 const T3Page = () => {
-  const ROOMS: roomsInfo[] = [
-    {
-      id: '2123546',
-      owner: 'Anonimus'
-    },
-    {
-      id: '1546523',
-      owner: 'Alex'
-    },
-  ]
+  const { rooms } = useOutletContext<ContextType>();
   
   return (
-    <RoomsSection rooms={ROOMS} />
+    <RoomsSection rooms={rooms} />
   );
 };
 

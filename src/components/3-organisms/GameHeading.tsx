@@ -3,16 +3,22 @@ import { gameInfo } from "../../costants/games";
 import MyHeading from "../1-atoms/MyHeading";
 import ModalGame from "./modalGame/ModalGame";
 
-const GameHeading = (game: gameInfo) => {
+type Props = {
+  game: gameInfo;
+  startRoom: () => void;
+  closeRoom: () => void;
+}
+
+const GameHeading = ({game, startRoom, closeRoom}: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const handleStartGame = () => {
     onOpen()
-    console.log(game);    
+    startRoom()
   }
   const handleFinishGame = () => {
     onClose()
-    console.log(game);    
+    closeRoom()
   }
 
   return (

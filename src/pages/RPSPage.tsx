@@ -1,11 +1,12 @@
+import { useOutletContext } from "react-router-dom";
 import RoomsSection from "../components/3-organisms/roomsSection/RoomsSection";
-import { roomsInfo } from "../types/rooms";
+import { ContextType } from "../components/4-layouts/GameLayout";
 
 const RPSPage = () => {
-  const ROOMS: roomsInfo[] = []
+  const { rooms } = useOutletContext<ContextType>();
   
   return (
-    <RoomsSection rooms={ROOMS} />
+    <RoomsSection rooms={rooms} />
   );
 };
 
