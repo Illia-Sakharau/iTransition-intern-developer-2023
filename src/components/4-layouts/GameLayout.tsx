@@ -45,17 +45,13 @@ const GameLayout = () => {
     socket = io(`https://task-7-server-cicp.onrender.com/${gameID}`);
 
     socket.on('room_closed', () => {
-      console.log('room_closed');
       onClose()
       setRoom(null)
     })
     socket.on('aponent_joined', (aponent) => {
-      console.log('aponent_joined');
       setRoom((currentRoom) => ({...(currentRoom as roomsInfo), aponent}))
     })
     socket.on('all_rooms', (data) => {
-      console.log('all_rooms');
-      
       setRooms(data.rooms)
     })
   // eslint-disable-next-line react-hooks/exhaustive-deps
