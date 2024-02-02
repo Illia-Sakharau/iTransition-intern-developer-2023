@@ -17,7 +17,7 @@ const GameLayout = () => {
   const [ rooms, setRooms ] = useState<roomsInfo[]>([]);
   const [ roomID, setRoomID ] = useState('');
 
-  socket = io(`http://localhost:8080/${gameID}`);
+  socket = io(`https://task-7-server-cicp.onrender.com/${gameID}`);
 
   const startRoom = () => {
     setRoomID(`${socket.id}`)
