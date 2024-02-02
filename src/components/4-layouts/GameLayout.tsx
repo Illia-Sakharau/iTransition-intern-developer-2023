@@ -42,7 +42,7 @@ const GameLayout = () => {
   }
 
   useEffect(() => {
-    socket = io(`http://localhost:8080/${gameID}`);
+    socket = io(`https://task-7-server-cicp.onrender.com/${gameID}`);
 
     socket.on('room_closed', () => {
       console.log('room_closed');
